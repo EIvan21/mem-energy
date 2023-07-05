@@ -8,6 +8,7 @@ view: precio_marginal_local {
     sql: ${TABLE}.id ;;
   }
   dimension: clave_entidad {
+
     type: number
     sql: ${TABLE}.clave_entidad ;;
   }
