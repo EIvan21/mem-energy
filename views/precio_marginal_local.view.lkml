@@ -70,10 +70,12 @@ view: precio_marginal_local {
   dimension: nombre_nodo {
     type: string
     sql: ${TABLE}.nombre_nodo ;;
+    drill_fields: [nodo_drill*]
   }
   dimension: pml {
     type: number
     sql: ${TABLE}.pml ;;
+
   }
   dimension: temperatura {
     type: number
@@ -88,11 +90,13 @@ view: precio_marginal_local {
   measure: pml_mean {
     type: average
     sql: ${pml} ;;
+    drill_fields: [nodo_drill*]
   }
 
   measure: energia_mean {
     type: average
     sql: ${componente_energia} ;;
+    drill_fields: [nodo_drill*]
   }
 
   measure: perdidas_mean {
@@ -112,6 +116,26 @@ view: precio_marginal_local {
   measure: temperatura_mean {
     type: average
     sql: ${temperatura} ;;
+  }
+
+  set: componente_drill{
+    fields: [
+      fecha_date,
+      hora,
+      nombre_entidad,
+      nombre_municipio,
+      componente_energia,
+      componente_congestion,
+      componente_perdidas
+    ]
+  }
+  set: nodo_drill {
+    fields: [
+      nombre_entidad,
+      nombre_municipio,
+      location,
+      pml_mean
+    ]
   }
 
 }
