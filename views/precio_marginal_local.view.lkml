@@ -8,6 +8,7 @@ view: precio_marginal_local {
     sql: ${TABLE}.id ;;
   }
   dimension: clave_entidad {
+
     type: number
     sql: ${TABLE}.clave_entidad ;;
   }
@@ -70,6 +71,7 @@ view: precio_marginal_local {
   dimension: nombre_nodo {
     type: string
     sql: ${TABLE}.nombre_nodo ;;
+    drill_fields: [nodo_drill*]
   }
   dimension: pml {
     type: number
@@ -113,5 +115,20 @@ view: precio_marginal_local {
     type: average
     sql: ${temperatura} ;;
   }
+
+  set: nodo_drill {
+    fields: [
+      nombre_nodo,
+      nombre_entidad,
+      nombre_municipio,
+      pml_mean,
+      energia_mean,
+      congestion_mean,
+      perdidas_mean,
+      temperatura_mean
+
+    ]
+  }
+
 
 }
