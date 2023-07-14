@@ -37,6 +37,14 @@ view: precio_marginal_local {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.fecha ;;
   }
+  dimension: event_initiated_week {
+    type: date_week
+    sql: ${TABLE}.fecha ;;
+  }
+  dimension: event_initiated_date {
+    type: date
+    sql: ${TABLE}.fecha ;;
+  }
   dimension: hora {
     type: number
     sql: ${TABLE}.hora ;;
