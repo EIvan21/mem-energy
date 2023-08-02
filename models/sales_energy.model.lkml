@@ -1,4 +1,4 @@
-connection: "energy-gcpea"
+connection: "energy_price_mx"
 
 include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project

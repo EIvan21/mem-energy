@@ -1,4 +1,4 @@
-connection: "energy-gcpea"
+connection: "energy_price_mx"
 
 # include all the views
 include: "/views/**/*.view.lkml"

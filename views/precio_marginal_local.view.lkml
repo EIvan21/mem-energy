@@ -138,5 +138,15 @@ view: precio_marginal_local {
     ]
   }
 
+  dimension: date_filter {
+    type: date
+    sql: ${TABLE}.fecha WHERE ${TABLE}.fecha >= DATE_SUB(NOW(), INTERVAL 6 MONTH;;
+  }
+
+  filter: test {
+    type: date
+    suggest_dimension: date_filter
+  }
+
 
 }
