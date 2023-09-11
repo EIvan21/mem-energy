@@ -34,7 +34,7 @@ view: precio_marginal_local {
   }
   dimension_group: fecha {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw, time, date, week, month, quarter, year,day_of_week, day_of_week_index,day_of_month]
     sql: ${TABLE}.fecha ;;
   }
   dimension: event_initiated_week {
