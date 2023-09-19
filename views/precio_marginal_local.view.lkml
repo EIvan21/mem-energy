@@ -98,6 +98,7 @@ view: precio_marginal_local {
   measure: pml_mean {
     type: average
     sql: ${pml} ;;
+    drill_fields: [nodo_drill*]
   }
 
   measure: energia_mean {
