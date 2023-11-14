@@ -2,6 +2,7 @@ connection: "energy_price_mx"
 
 # include all the views
 include: "/views/**/*.view.lkml"
+
 include: "/dashboards/**/*"
 week_start_day: sunday
 datagroup: pml_edher_default_datagroup {
