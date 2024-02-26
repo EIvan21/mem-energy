@@ -1,5 +1,5 @@
 view: precio_marginal_local {
-  sql_table_name: pml_energia.precio_marginal_local ;;
+  sql_table_name: precios_energia_mexico.pml ;;
   drill_fields: [id]
 
   dimension: id {
@@ -49,9 +49,9 @@ view: precio_marginal_local {
     type: number
     sql: ${TABLE}.hora ;;
   }
-  dimension: indice_henry_ford {
+  dimension: henry_hub_index {
     type: number
-    sql: ${TABLE}.indice_henry_ford ;;
+    sql: ${TABLE}.henry_hub_index ;;
   }
   dimension: latitud {
     type: number
@@ -118,7 +118,7 @@ view: precio_marginal_local {
 
   measure: henry_hub_mean {
     type: average
-    sql: ${indice_henry_ford} ;;
+    sql: ${henry_hub_index} ;;
   }
   measure: temperatura_mean {
     type: average
