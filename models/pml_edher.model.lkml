@@ -1,4 +1,5 @@
-connection: "energy_price_mx"
+connection: "pml_energia"
+
 
 # include all the views
 include: "/views/**/*.view.lkml"
