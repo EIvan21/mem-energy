@@ -8,7 +8,7 @@ include: "/dashboards/**/*"
 week_start_day: sunday
 datagroup: pml_edher_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
+  max_cache_age: "240 hours"
 }
 
 persist_with: pml_edher_default_datagroup
