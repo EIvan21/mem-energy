@@ -1,5 +1,6 @@
 view: precio_marginal_local {
-  sql_table_name: precios_energia_mexico.pml ;;
+  # sql_table_name: `gtect-lab-ei.energia.energia` ;;
+  sql_table_name: `gtect-lab-ei.energia.{{ _user_attributes['energia_dataset'] }}` ;;
   drill_fields: [id]
 
   dimension: id {
@@ -48,6 +49,7 @@ view: precio_marginal_local {
   dimension: hora {
     type: number
     sql: ${TABLE}.hora ;;
+    drill_fields: [nombre_municipio,nombre_nodo,energia_mean]
   }
   dimension: henry_hub_index {
     type: number
@@ -71,10 +73,12 @@ view: precio_marginal_local {
   dimension: nombre_entidad {
     type: string
     sql: ${TABLE}.nombre_entidad ;;
+    drill_fields: [nombre_municipio,nombre_nodo]
   }
   dimension: nombre_municipio {
     type: string
     sql: ${TABLE}.nombre_municipio ;;
+    drill_fields: [nombre_nodo]
   }
   dimension: nombre_nodo {
     type: string
@@ -104,7 +108,34 @@ view: precio_marginal_local {
   measure: energia_mean {
     type: average
     sql: ${componente_energia} ;;
+
   }
+
+
+
+  # measure: total {
+  #   type: sum
+  #   sql: ${amount} ;;
+  #   value_format: "$#,##0.00"
+  #   drill_fields: [id]
+  #   link: {
+  #     label: "By Distributor"
+  #     url: "{{ link }}&fields=distributors.name,transactions_history.total"
+  #   }
+  #   link: {
+  #     label: "By Carrier"
+  #     url: "{{ link }}&fields=carriers.name,transactions_history.total"
+  #   }
+  # }
+
+  # set: distributor {
+  #   fields: [distributors.name,total]
+  # }
+  # link: {
+  #   label: "By Distributor"
+  #   url: "{{ link }}?fields=distributors.name,transactions_history.total"
+  #   #url: "/explore/quo_pagaqui_al/transactions_history?fields=distributors.name,transactions_history.total"
+  # }
 
   measure: perdidas_mean {
     type: average
