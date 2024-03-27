@@ -49,7 +49,6 @@ view: precio_marginal_local {
   dimension: hora {
     type: number
     sql: ${TABLE}.hora ;;
-    drill_fields: [nombre_municipio,nombre_nodo,energia_mean]
   }
   dimension: henry_hub_index {
     type: number
@@ -73,12 +72,20 @@ view: precio_marginal_local {
   dimension: nombre_entidad {
     type: string
     sql: ${TABLE}.nombre_entidad ;;
-    drill_fields: [nombre_municipio,nombre_nodo]
+    drill_fields: []
+    link: {
+      label: "Por municipio"
+      url: "@{linear_visualization_drill}{{ link }}&fields=precio_marginal_local.hora,precio_marginal_local.nombre_municipio,precio_marginal_local.energia_mean&pivots=precio_marginal_local.nombre_municipio&vis_config={{ vis_config | encode_uri }}"
+    }
   }
   dimension: nombre_municipio {
     type: string
     sql: ${TABLE}.nombre_municipio ;;
-    drill_fields: [nombre_nodo]
+    drill_fields: []
+    link: {
+      label: "Por nodo"
+      url: "@{linear_visualization_drill}{{ link }}&fields=precio_marginal_local.hora,precio_marginal_local.nombre_nodo,precio_marginal_local.energia_mean&pivots=precio_marginal_local.nombre_nodo&vis_config={{ vis_config | encode_uri }}"
+    }
   }
   dimension: nombre_nodo {
     type: string
@@ -108,34 +115,25 @@ view: precio_marginal_local {
   measure: energia_mean {
     type: average
     sql: ${componente_energia} ;;
+    drill_fields: [municipio*]
+    link: {
+      label: "Por municipio y hora"
+      url: "{{ link }}&fields=precio_marginal_local.nombre_municipio,precio_marginal_local.energia_mean"
+    }
+    link: {
+      label: "Por nodo desde municipio"
+      url: "{{ link }}&fields=precio_marginal_local.nombre_nodo,precio_marginal_local.energia_mean"
+    }
 
+  }
+  set:  municipio{
+    fields: [nombre_municipio,energia_mean]
   }
 
 
+  # explore https://gtechdev.cloud.looker.com/explore/pml_edher/precio_marginal_local?qid=2WhganuCVuTrBqQku01Vau&toggle=vis
 
-  # measure: total {
-  #   type: sum
-  #   sql: ${amount} ;;
-  #   value_format: "$#,##0.00"
-  #   drill_fields: [id]
-  #   link: {
-  #     label: "By Distributor"
-  #     url: "{{ link }}&fields=distributors.name,transactions_history.total"
-  #   }
-  #   link: {
-  #     label: "By Carrier"
-  #     url: "{{ link }}&fields=carriers.name,transactions_history.total"
-  #   }
-  # }
 
-  # set: distributor {
-  #   fields: [distributors.name,total]
-  # }
-  # link: {
-  #   label: "By Distributor"
-  #   url: "{{ link }}?fields=distributors.name,transactions_history.total"
-  #   #url: "/explore/quo_pagaqui_al/transactions_history?fields=distributors.name,transactions_history.total"
-  # }
 
   measure: perdidas_mean {
     type: average
