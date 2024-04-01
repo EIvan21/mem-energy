@@ -17,3 +17,4 @@ persist_with: pml_edher_default_datagroup
 explore: precio_marginal_local {}
 explore: transactions {}
 explore: users {}
+explore: derived_table_ua {}

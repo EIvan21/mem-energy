@@ -1,6 +1,6 @@
 view: precio_marginal_local {
-  # sql_table_name: `gtect-lab-ei.energia.energia` ;;
-  sql_table_name: `gtect-lab-ei.energia.{{ _user_attributes['energia_dataset'] }}` ;;
+  sql_table_name: `gtect-lab-ei.energia.energia` ;;
+  # sql_table_name: `gtect-lab-ei.energia.{{ _user_attributes['energia_dataset'] }}` ;;
   drill_fields: [id]
 
   dimension: id {
@@ -93,13 +93,6 @@ view: precio_marginal_local {
 
   }
 
-  # https://gtechdev.cloud.looker.com/dashboards/26?Nombre+Entidad=cdmx&Hora=%5B0%2C14%5D
-  # dimension: more_details {
-  #   type: string
-  #   sql: "Detalles" ;;
-  #   label: "Más detalles"
-  #   html: <a href="https://quom.cloud.looker.com/dashboards/7?Cliente={{entities_name | url_encode}}&Fecha={{ _filters['transactions_history.date_date'] | url_encode}}" target="_blank"><center><img src="https://cdn-icons-png.flaticon.com/128/189/189664.png" alt="" height="16" width="16"></center></a>;;
-  # }
   dimension: nombre_nodo {
     type: string
     sql: ${TABLE}.nombre_nodo ;;
