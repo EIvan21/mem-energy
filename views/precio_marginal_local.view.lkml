@@ -44,7 +44,7 @@ view: precio_marginal_local {
   }
   dimension: event_initiated_date {
     type: date
-    sql: ${TABLE}.fecha ;;
+    sql: TIMESTAMP(${TABLE}.fecha) ;;
   }
   dimension: hora {
     type: number
@@ -82,6 +82,13 @@ view: precio_marginal_local {
       url: "https://gtechdev.cloud.looker.com/dashboards/26?Nombre+Entidad={{nombre_entidad | url_encode}}"
     }
   }
+
+  dimension: test_map {
+    sql: ${nombre_entidad} ;;
+    map_layer_name: estados_republica
+  }
+
+
   dimension: nombre_municipio {
     type: string
     sql: ${TABLE}.nombre_municipio ;;

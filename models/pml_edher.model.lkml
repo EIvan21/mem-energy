@@ -11,6 +11,11 @@ datagroup: pml_edher_default_datagroup {
   max_cache_age: "240 hours"
 }
 
+map_layer: estados_republica {
+  file: "/maps/mexico_states.geojson"
+
+  #property_key: "test_map"
+}
 persist_with: pml_edher_default_datagroup
 
 
