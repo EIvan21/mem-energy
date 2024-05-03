@@ -1,6 +1,6 @@
 view: precio_marginal_local {
   sql_table_name: `gtect-lab-ei.energia.energia` ;;
-  # sql_table_name: `gtect-lab-ei.energia.{{ _user_attributes['energia_dataset'] }}` ;;
+  # sql_table_name: `gtect-lab-ei.energia.energia_{{ _user_attributes['energia_dataset'] }}` ;;
   drill_fields: [id]
 
   dimension: id {
@@ -82,10 +82,35 @@ view: precio_marginal_local {
       url: "https://gtechdev.cloud.looker.com/dashboards/26?Nombre+Entidad={{nombre_entidad | url_encode}}"
     }
   }
+  dimension: entidad_unica{
+    type: string
+    sql: DISTINCT ${nombre_entidad} ;;
+  }
+
+  dimension: zona {
+    type: string
+    sql:
+    CASE
+      WHEN ${nombre_entidad} IN ('baja california', 'baja california sur') THEN 'California'
+      WHEn ${nombre_entidad} IN ('sonora', 'coahuila', 'chihuahua', 'durango') THEN 'NorOeste'
+      WHEN ${nombre_entidad} IN ('chihuahua', 'colima', 'nayarit', 'san luis potosi') THEN 'NorCentro'
+      WHEn ${nombre_entidad} IN ('tamaulipas', 'nuevo leon', 'veracruz', 'morelos', 'tabasco') THEN 'NorEste'
+      WHEN ${nombre_entidad} IN ('michoacan', 'guerrero', 'oaxaca', 'jalisco') THEN 'Oeste'
+      WHEN ${nombre_entidad} IN ('cdmx', 'puebla', 'michoacan') THEN 'Sur'
+    ELSE 'Este'
+    END
+
+      ;;
+  }
 
   dimension: test_map {
     sql: ${nombre_entidad} ;;
     map_layer_name: estados_republica
+  }
+
+  dimension: zonas_test_map {
+    sql: ${zona};;
+    map_layer_name: zonas_test
   }
 
 

@@ -16,6 +16,11 @@ map_layer: estados_republica {
 
   #property_key: "test_map"
 }
+map_layer: zonas_test {
+  file: "/maps/zonas_test.geojson"
+
+  #property_key: "test_map"
+}
 persist_with: pml_edher_default_datagroup
 
 
@@ -23,3 +28,4 @@ explore: precio_marginal_local {}
 explore: transactions {}
 explore: users {}
 explore: derived_table_ua {}
+explore: zonas_map {}
