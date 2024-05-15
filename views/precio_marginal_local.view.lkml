@@ -81,6 +81,10 @@ view: precio_marginal_local {
       label: "Dashboard información por municipio"
       url: "https://gtechdev.cloud.looker.com/dashboards/26?Nombre+Entidad={{nombre_entidad | url_encode}}"
     }
+    link: {
+      label: "Stock Value Details"
+      url: "https://gtechdev.cloud.looker.com/dashboards/26?Nombre+Entidad={{ _filters['precio_marginal_local.nombre_entidad']| url_encode }}"
+    }
   }
   dimension: entidad_unica{
     type: string
