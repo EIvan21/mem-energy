@@ -36,3 +36,4 @@ constant: linear_visualization_drill {
   \"series_types\" : {},
   \"defaults_version\" : 1}' %}"
 }
+new_lookml_runtime: no

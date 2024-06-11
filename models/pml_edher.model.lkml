@@ -29,3 +29,4 @@ explore: transactions {}
 explore: users {}
 explore: derived_table_ua {}
 explore: zonas_map {}
+explore: inventario {}
